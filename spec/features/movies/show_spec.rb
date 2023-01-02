@@ -53,5 +53,22 @@ RSpec.describe 'the movie show' do
 
       expect(page).to_not have_content(@actor_3.name)
     end
+
+    it 'has a form to add an actor to this movie' do
+      visit "/movies/#{@movie_1.id}"
+      xpath = "\"movie-#{@movie_1.id}-add-actors\""
+
+      within(:xpath, "//div[@id=#{xpath}]") do
+        fill_in('actor_id', with: @actor_2.id)
+        click_button 'submit'
+      end
+
+      visit "/movies/#{@movie_1.id}"
+      xpath = "\"movie-#{@movie_1.id}-actors\""
+
+      within(:xpath, "//div[@id=#{xpath}]") do
+        expect(page).to have_content(@actor_2.name)
+      end
+    end
   end
 end
