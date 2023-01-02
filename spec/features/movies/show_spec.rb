@@ -29,10 +29,19 @@ RSpec.describe 'the movie show' do
       expect(page).to have_content(@movie_1.title)
       expect(page).to have_content(@movie_1.creation_year)
       expect(page).to have_content(@movie_1.genre)
+      expect(page).to_not have_content(@movie_2.title)
     end
 
-    it 'shows a list of all its actors from youngest to oldest'
+    it 'shows a list of all its actors from youngest to oldest' do
+      visit "/movies/#{@movie_3.id}"
+      xpath = "\"movie-#{@movie_3.id}-actors\""
 
+      within(:xpath, "//div[@id=#{xpath}]") do
+        expect(page).to have_content(@actor_1.name)
+        expect(page).to have_content(@actor_2.name)
+        expect(page).to_not have_content(@actor_3.name)
+      end
+    end
 
     it 'shows the average age of all of the movie\'s actors'
 
