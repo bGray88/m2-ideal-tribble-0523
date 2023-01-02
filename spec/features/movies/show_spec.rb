@@ -30,5 +30,11 @@ RSpec.describe 'the movie show' do
       expect(page).to have_content(@movie_1.creation_year)
       expect(page).to have_content(@movie_1.genre)
     end
+
+    it 'shows a list of all its actors from youngest to oldest'
+
+
+    it 'shows the average age of all of the movie\'s actors'
+
   end
 end
