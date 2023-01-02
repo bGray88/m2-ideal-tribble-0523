@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2023_01_02_162237) do
 
   create_table "actors", force: :cascade do |t|
     t.string "name"
+    t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,12 +36,16 @@ ActiveRecord::Schema.define(version: 2023_01_02_162237) do
     t.string "creation_year"
     t.string "genre"
     t.bigint "studio_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["studio_id"], name: "index_movies_on_studio_id"
   end
 
   create_table "studios", force: :cascade do |t|
     t.string "name"
     t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "actor_movies", "actors"
