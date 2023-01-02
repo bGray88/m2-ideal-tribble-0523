@@ -1,5 +1,18 @@
 <h1>Studios</h1>
 
-<% @studios.each do |studio| %>
- <h3><pre><%= "   Studio: #{studio.name}, Location: #{studio.location}" %>
+<% if @studios.any? %>
+  <ul>
+    <% @studios.each do |studio| %>
+      <li><h3><%= "Studio: #{studio.name}, Location: #{studio.location}" %></h3></li>
+      <% if studio.movies.any? %>
+        <ul>
+          <div id=<%= "studio-#{studio.id}-movies" %> >
+            <% studio.movies.each do |movie| %>
+              <li><h3><pre><%= "Movie: #{movie.title}, Year: #{movie.creation_year}, Genre: #{movie.genre}" %></pre></h3></li>
+            <% end %>
+          </div>
+        </ul>
+      <% end %>
+    <% end %>
+  </ul>
 <% end %>

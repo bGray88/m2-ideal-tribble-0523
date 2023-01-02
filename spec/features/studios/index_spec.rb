@@ -22,11 +22,16 @@ RSpec.describe 'the studio index' do
 
     it 'shows all of the studios including name and location' do
       visit "/studios"
+      xpath = "\"studio-#{@studio_1.id}-movies\""
 
-      within(:xpath, '//div[@id="studio-1-movies"]') do
-        expect(page).to have_content(@movie_1.name)
-        expect(page).to have_content(@movie_2.name)
-        expect(page).to_not have_content(@movie_3.name)
+      within(:xpath, "//div[@id=#{xpath}]") do
+        expect(page).to have_content(@movie_1.title)
+        expect(page).to have_content(@movie_1.creation_year)
+        expect(page).to have_content(@movie_1.genre)
+        expect(page).to have_content(@movie_2.title)
+        expect(page).to have_content(@movie_2.creation_year)
+        expect(page).to have_content(@movie_2.genre)
+        expect(page).to_not have_content(@movie_3.title)
       end
     end
   end
