@@ -6,4 +6,8 @@ class Movie < ApplicationRecord
   def average_age_actors
     self.actors.average(:age).to_f
   end
+
+  def sort(direction)
+    actors.order(age: direction)
+  end
 end

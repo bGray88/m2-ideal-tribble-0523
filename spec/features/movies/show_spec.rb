@@ -9,9 +9,10 @@ RSpec.describe 'the movie show' do
     @movie_2 = FactoryBot.create(:movie, studio: @studio_1)
     @movie_3 = FactoryBot.create(:movie, studio: @studio_2)
 
-    @actor_1 = FactoryBot.create(:actor)
-    @actor_2 = FactoryBot.create(:actor)
-    @actor_3 = FactoryBot.create(:actor)
+    @actor_1 = FactoryBot.create(:actor, age: 55)
+    @actor_2 = FactoryBot.create(:actor, age: 22)
+    @actor_3 = FactoryBot.create(:actor, age: 77)
+    @actor_4 = FactoryBot.create(:actor, age: 67)
 
     @actor_1.movies << @movie_1
     @actor_1.movies << @movie_2
@@ -20,6 +21,7 @@ RSpec.describe 'the movie show' do
     @actor_2.movies << @movie_3
     @actor_3.movies << @movie_1
     @actor_3.movies << @movie_2
+    @actor_4.movies << @movie_3
   end
 
   describe 'When I visit a movie\'s show page' do
@@ -39,6 +41,8 @@ RSpec.describe 'the movie show' do
       within(:xpath, "//div[@id=#{xpath}]") do
         expect(page).to have_content(@actor_1.name)
         expect(page).to have_content(@actor_2.name)
+        expect(@actor_1.name).to appear_before(@actor_4.name)
+        expect(@actor_2.name).to appear_before(@actor_1.name)
       end
     end
 

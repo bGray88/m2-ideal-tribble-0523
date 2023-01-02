@@ -11,8 +11,8 @@
   <% if @movie.actors.any? %>
     <ol>
       <div id=<%= "movie-#{@movie.id}-actors" %> >
-        <% @movie.actors.each do |actor| %>
-          <li><h3><pre><%= "Actor: #{actor.name}" %></pre></h3></li>
+        <% @movie.sort(:asc).each do |actor| %>
+          <li><h3><pre><%= "Actor: #{actor.name}, Age: #{actor.age}" %></pre></h3></li>
         <% end %>
       </div>
     </ol>

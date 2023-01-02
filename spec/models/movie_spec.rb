@@ -27,5 +27,13 @@ RSpec.describe Movie do
         expect(@movie_1.average_age_actors.round(2)).to eq(39)
       end
     end
+
+    describe '#sort' do
+      it 'returns a sorted collection of actors' do
+        expected = [@actor_2, @actor_3, @actor_1]
+        
+        expect(@movie_1.sort(:asc)).to eq(expected)
+      end
+    end
   end
 end
