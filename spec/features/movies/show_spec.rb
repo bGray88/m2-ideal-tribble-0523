@@ -39,7 +39,6 @@ RSpec.describe 'the movie show' do
       within(:xpath, "//div[@id=#{xpath}]") do
         expect(page).to have_content(@actor_1.name)
         expect(page).to have_content(@actor_2.name)
-        expect(page).to_not have_content(@actor_3.name)
       end
     end
 
@@ -47,6 +46,12 @@ RSpec.describe 'the movie show' do
       visit "/movies/#{@movie_1.id}"
 
       expect(page).to have_content(@movie_1.average_age_actors)
+    end
+
+    it 'does not show any actors listed that are not part of the movie' do
+      visit "/movies/#{@movie_3.id}"
+
+      expect(page).to_not have_content(@actor_3.name)
     end
   end
 end

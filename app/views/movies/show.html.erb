@@ -4,7 +4,9 @@
   <h3>
     <%= "Created Year: #{@movie.creation_year}" %>
     <%= "Genre:        #{@movie.genre}" %>
-    <%= "Average Age of Actors: #{@movie.average_age_actors}" %>
+    <% if @movie.actors.any? %>
+      <%= "Average Age of Actors: #{@movie.average_age_actors}" %>
+    <% end %>
   </h3>
   <% if @movie.actors.any? %>
     <ol>
