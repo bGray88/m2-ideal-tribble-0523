@@ -18,7 +18,7 @@
     </ol>
   <% end %>
   <div id=<%= "movie-#{@movie.id}-add-actors" %> >
-    <%= form_with url: "/actor_movies?actor_id=#{@movie.id}", method: :post, local: true do |form| %>
+    <%= form_with url: "/actor_movies?movie_id=#{@movie.id}", method: :post, local: true do |form| %>
       <%= form.label :actor_id %>
       <%= form.text_field :actor_id %>
       <%= form.submit "submit" %>
